@@ -3,14 +3,19 @@ import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
 
+import { NavLink } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 import styles from './Header.module.scss';
 
-const Component = ({className, children}) => (
+const Component = ({className, children, logged}) => (
   <div className={clsx(className, styles.root)}>
-    <h2>Header</h2>
+    <nav>
+      {logged ? <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/post/add'} activeClassName='active'>Add post</Button> : <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/login'} activeClassName='active'>Log in</Button> }
+    </nav>
     {children}
   </div>
 );
@@ -18,6 +23,7 @@ const Component = ({className, children}) => (
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  logged: PropTypes.bool,
 };
 
 // const mapStateToProps = state => ({
