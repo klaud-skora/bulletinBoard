@@ -14,7 +14,16 @@ import styles from './Header.module.scss';
 const Component = ({className, children, logged}) => (
   <div className={clsx(className, styles.root)}>
     <nav>
-      {logged ? <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/post/add'} activeClassName='active'>Add post</Button> : <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/login'} activeClassName='active'>Log in</Button> }
+      {
+        !logged
+          ? <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/login'} activeClassName='active'>Log in</Button>
+          : (
+            <div>
+              <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/post/add'} activeClassName='active'>Add post</Button>
+              <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/posts'} activeClassName='active'>My posts</Button>
+              <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/logout'} activeClassName='active'>Log out</Button>
+            </div>)
+      }
     </nav>
     {children}
   </div>
