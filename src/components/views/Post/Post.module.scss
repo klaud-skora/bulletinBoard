@@ -1,4 +1,30 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+
+  .post {
+    padding: 20px 40px;
+
+    h2 {
+      text-align: center;
+    }
+
+    p {
+      font-size: $base-size * .8;
+    }
+  }
+
+  .info, .dates, .date, .contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .date {
+    margin-right: 20px;
+  }
+
+  .contact h6 {
+    margin-right: 12px;
+  }
+}

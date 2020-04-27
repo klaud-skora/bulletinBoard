@@ -1,34 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import clsx from 'clsx';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { Header } from '../../layout/Header/Header';
+import { initialState } from './../../../redux/initialState';
 
 import styles from './Post.module.scss';
 
-const Component = ({className, children}) => (
+const Component = ({className, match}) => (
   <div className={clsx(className, styles.root)}>
-    <h2>Post</h2>
-    {children}
+    <Header logged={true} home={false}/>
+    <div className={styles.post}>
+
+      <h2>{initialState.posts.data[match.params.id].title}</h2>
+      <div>{initialState.posts.data[match.params.id].text}</div>
+      <div className={styles.info}>
+        <div className={styles.dates}>
+          <div className={styles.date}>
+            <h6>Published:</h6>
+            <p>{initialState.posts.data[match.params.id].published}</p>
+          </div>
+          <div className={styles.date}>
+            <h6>Upated:</h6>
+            <p>{initialState.posts.data[match.params.id].updated}</p>
+          </div>
+        </div>
+        <div className={styles.contact}>
+          <h6>Contact author: </h6>
+          <p>{initialState.posts.data[match.params.id].email}</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 );
-
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  match: PropTypes.object,
+  elo: PropTypes.string,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
   Component as Post,

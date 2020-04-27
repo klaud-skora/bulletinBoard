@@ -3,16 +3,13 @@ import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
 
-import { Header } from '../Header/Header';
-
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 import styles from './MainLayout.module.scss';
 
-const Component = ({className, children}) => (
+const Component = ({className, children, store}) => (
   <div className={clsx(className, styles.root)}>
-    <Header logged={false} />
     {children}
   </div>
 );
@@ -20,6 +17,7 @@ const Component = ({className, children}) => (
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  store: PropTypes.object,
 };
 
 // const mapStateToProps = state => ({

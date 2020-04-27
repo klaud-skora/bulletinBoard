@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 
 import styles from './Header.module.scss';
 
-const Component = ({className, children, logged}) => (
+const Component = ({className, children, logged, home}) => (
   <div className={clsx(className, styles.root)}>
     <nav>
       {
@@ -19,6 +19,7 @@ const Component = ({className, children, logged}) => (
           ? <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/login'} activeClassName='active'>Log in</Button>
           : (
             <div>
+              {home ? '' :<Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/'} activeClassName='active'>Homepage</Button> }
               <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/post/add'} activeClassName='active'>Add post</Button>
               <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/posts'} activeClassName='active'>My posts</Button>
               <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/logout'} activeClassName='active'>Log out</Button>
@@ -33,6 +34,7 @@ Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   logged: PropTypes.bool,
+  home: PropTypes.bool,
 };
 
 // const mapStateToProps = state => ({

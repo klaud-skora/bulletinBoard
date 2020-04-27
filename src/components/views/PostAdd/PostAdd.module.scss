@@ -1,4 +1,33 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+  text-align: center;
+
+  .addForm {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 40px;
+  }
+
+  input {
+    margin: 20px 0;
+    border: none;
+    border-bottom: 2px solid $main-color;
+    width: 50%;
+    background-color: inherit;
+    outline: none;
+    padding: 10px 0;
+  }
+
+  textarea {
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid $main-color;
+    padding: 5px;
+  }
+
+  button {
+    width: 100px;
+    margin: 10px 0 0 auto;
+  }
+}

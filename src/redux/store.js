@@ -2,7 +2,7 @@ import {combineReducers, createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import { initialState } from './initialState';
+import { initialState} from './initialState';
 import { reducer as postsReducer } from './postsRedux';
 
 // define reducers
