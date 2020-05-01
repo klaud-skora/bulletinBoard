@@ -3,4 +3,8 @@
 .root {
   text-align: center;
   padding-top: 40vh;
+
+  .link {
+    border: 1px solid $main-color;
+  }
 }

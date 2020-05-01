@@ -21,12 +21,12 @@
   .listElement {
     display: inline-block;
     font-size: $base-size * 1.5;
-    padding: 10px;
+    padding: 15px;
     margin: 20px;
 
     &:hover {
-      border: 3px solid $main-color;
-      color: #ffffff;
+      color: #fff;
+      text-shadow: .1px .1px .1px $main-color;
       border-radius: 5px;
       background-color: #CAD3C8;
     }

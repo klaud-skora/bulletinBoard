@@ -6,16 +6,18 @@ import clsx from 'clsx';
 import { NavLink } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
+import { initialState } from '../../../redux/initialState';
+
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 import styles from './Header.module.scss';
 
-const Component = ({className, children, logged, home}) => (
+const Component = ({className, children, home}) => (
   <div className={clsx(className, styles.root)}>
     <nav>
       {
-        !logged
+        !initialState.logged
           ? <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/login'} activeClassName='active'>Log in</Button>
           : (
             <div>

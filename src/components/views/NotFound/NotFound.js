@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
 
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
 // import { connect } from 'react-redux';
@@ -15,7 +15,7 @@ const Component = ({className, children}) => (
   <div className={clsx(className, styles.root)}>
     <h3>Not found...</h3>
     <p>Click the button below to go back:</p>
-    <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/'} activeClassName='active'>Homepage</Button>
+    <Button className={styles.link} component={Link} exact to={process.env.PUBLIC_URL +'/'} activeClassName='active'>Homepage</Button>
   </div>
 );
 
