@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
 
-import { Header } from '../../layout/Header/Header';
-
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
@@ -12,13 +10,12 @@ import styles from './PostAdd.module.scss';
 
 const Component = ({className, children}) => (
   <div className={clsx(className, styles.root)}>
-    <Header logged={true} home={false} />
     <form className={styles.addForm}>
       <h2 className={styles.header}>Add new post</h2>
       <input type="email" placeholder="Your email"></input>
       <input type="text" placeholder="Title of new post" minLength="10"></input>
       <textarea rows="10" placeholder="Type your post content" minLength="20"></textarea>
-      <button type="submit">Add post</button>
+      <button className={styles.submit} type="submit">Add post</button>
     </form>
   </div>
 );

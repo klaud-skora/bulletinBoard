@@ -41,7 +41,7 @@ const Component = ({ post, className, logged }) => {
         </div>
         {logged ? (
           <div>
-            <Button className={styles.link} component={Link} to={process.env.PUBLIC_URL + 'post/edit'}><EditIcon/>Edit post</Button>
+            <Button className={styles.link} component={Link} to={process.env.PUBLIC_URL + `/post/${post.id}/edit`}><EditIcon/>Edit post</Button>
           </div>)
           : ''
         }

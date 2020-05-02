@@ -1,4 +1,60 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+
+  .post {
+    padding: 20px 100px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dataBox {
+    display: flex;
+    margin: 20px 0;
+    justify-content: space-between;
+
+    * {
+      margin-right: 20px;
+    }
+
+    .title {
+      flex: 30%;
+      max-width:  30%;
+    }
+  }
+
+  .window {
+    text-align: center;
+    width: 100%;
+  }
+
+  input, textarea {
+    background-color: lighten($main-color, 20%);
+    border-radius: 12px;
+    padding: 10px;
+    border: 2px solid #2C3A47;
+    line-height: 1.1rem;
+    outline: none;
+  }
+
+  textarea {
+    min-height: 200px;
+    overflow: auto;
+  }
+
+  .submit {
+    background-color: #CAD3C8;
+    width: 100px;
+    margin: 10px 0 0 auto;
+    border-radius: 5px;
+    margin-right: 20px;
+    outline: $main-color;
+  }
+
+  .link {
+    margin-top: 20px;
+    margin-left: 80%;
+  }
+
+
+}

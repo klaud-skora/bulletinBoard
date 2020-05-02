@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import styles from './Header.module.scss';
 
 const Component = ({className, children, state, match}) => {
-  const home = match.path;
+  const home = match.isExact;
 
   return(
     <div className={clsx(className, styles.root)}>
@@ -23,7 +23,7 @@ const Component = ({className, children, state, match}) => {
             ? <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/login'} activeClassName='active'>Log in</Button>
             : (
               <div>
-                { home === '/' ? '' :<Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/'} activeClassName='active'>Homepage</Button> }
+                { home ? '' : <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/'} activeClassName='active'>Homepage</Button> }
                 <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/post/add'} activeClassName='active'>Add post</Button>
                 <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/posts'} activeClassName='active'>My posts</Button>
                 <Button className={styles.link} component={NavLink} exact to={process.env.PUBLIC_URL +'/logout'} activeClassName='active'>Log out</Button>

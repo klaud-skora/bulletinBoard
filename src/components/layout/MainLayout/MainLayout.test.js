@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { MainLayoutComponent } from './MainLayout';
 
 const mockLocation = {
-  state: undefined,
+  pathname: '/',
 };
 
 describe('Component MainLayout', () => {
