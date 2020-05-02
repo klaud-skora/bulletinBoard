@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { HomepageComponent } from './Homepage';
 
-const posts = [
+const mockPosts = [
   {
     id: 0,
     title: 'Thunderbolts comming!',
@@ -43,7 +43,7 @@ const posts = [
 
 describe('Component Homepage', () => {
   it('should render without crashing', () => {
-    const component = shallow(<HomepageComponent posts={posts} />);
+    const component = shallow(<HomepageComponent posts={mockPosts} />);
     expect(component).toBeTruthy();
   });
 });

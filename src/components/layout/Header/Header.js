@@ -48,7 +48,6 @@ const mapStateToProps = state => ({
   state: state,
 });
 
-
 // const mapDispatchToProps = dispatch => ({
 //   someAction: arg => dispatch(reduxActionCreator(arg)),
 // });
