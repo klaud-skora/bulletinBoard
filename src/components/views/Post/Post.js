@@ -2,16 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { Header } from '../../layout/Header/Header';
 import { initialState } from './../../../redux/initialState';
 
 import styles from './Post.module.scss';
 
 const Component = ({className, match}) => (
   <div className={clsx(className, styles.root)}>
-    <Header logged={true} home={false}/>
     <div className={styles.post}>
-
       <h2>{initialState.posts.data[match.params.id].title}</h2>
       <div>{initialState.posts.data[match.params.id].text}</div>
       <div className={styles.info}>
