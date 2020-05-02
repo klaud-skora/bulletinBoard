@@ -11,7 +11,6 @@ import { Header } from '../../layout/Header/Header';
 import styles from './MainLayout.module.scss';
 
 const Component = ({className, children, location}) => {
-  console.log(location.state === null);
   return(
     <div className={clsx(className, styles.root)}>
       {location.state === null ? '' : <Header />}

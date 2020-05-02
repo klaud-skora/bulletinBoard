@@ -3,42 +3,50 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getAll } from './../../../redux/postsRedux';
-
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
+import EditIcon from '@material-ui/icons/Edit';
 import { NotFound } from '../NotFound/NotFound';
 
 import styles from './Post.module.scss';
 
-const Component = ({ posts, className, match }) => {
+const Component = ({ post, className, logged }) => {
 
-  const post = posts[match.params.id];
+  if(!post) {
+    return <NotFound />;
+  }
+
   const {title, text, published, updated, email} = post;
 
   return (
-    post ?
-      <div className={clsx(className, styles.root)}>
-        <div className={styles.post}>
-          <h2>{title}</h2>
-          <div>{text}</div>
-          <div className={styles.info}>
-            <div className={styles.dates}>
-              <div className={styles.date}>
-                <h6>Published:</h6>
-                <p>{published}</p>
-              </div>
-              <div className={styles.date}>
-                <h6>Upated:</h6>
-                <p>{updated}</p>
-              </div>
+    <div className={clsx(className, styles.root)}>
+      <div className={styles.post}>
+        <h2>{title}</h2>
+        <div>{text}</div>
+        <div className={styles.info}>
+          <div className={styles.dates}>
+            <div className={styles.date}>
+              <h6>Published:</h6>
+              <p>{published}</p>
             </div>
-            <div className={styles.contact}>
-              <h6>Contact author: </h6>
-              <p>{email}</p>
+            <div className={styles.date}>
+              <h6>Upated:</h6>
+              <p>{updated}</p>
             </div>
           </div>
+          <div className={styles.contact}>
+            <h6>Contact author: </h6>
+            <p>{email}</p>
+          </div>
         </div>
+        {logged ? (
+          <div>
+            <Button className={styles.link} component={Link} to={process.env.PUBLIC_URL + 'post/edit'}><EditIcon/>Edit post</Button>
+          </div>)
+          : ''
+        }
       </div>
-      : <NotFound />
+    </div>
   );
 };
 
@@ -46,11 +54,13 @@ Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   match: PropTypes.object,
-  posts: PropTypes.array,
+  post: PropTypes.object,
+  logged: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  posts: getAll(state),
+const mapStateToProps = (state, props) => ({
+  post: state.posts[props.match.params.id],
+  logged: state.logged,
 });
 
 const Container = connect(mapStateToProps)(Component);
