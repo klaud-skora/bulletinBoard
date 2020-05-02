@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
-
+import { withRouter } from 'react-router';
 
 import { Header } from '../../layout/Header/Header';
 // import { connect } from 'react-redux';
@@ -10,18 +10,23 @@ import { Header } from '../../layout/Header/Header';
 
 import styles from './MainLayout.module.scss';
 
-const Component = ({className, children, store}) => (
-  <div className={clsx(className, styles.root)}>
-    <Header />
-    {children}
-  </div>
-);
+const Component = ({className, children, location}) => {
+  console.log(location.state === null);
+  return(
+    <div className={clsx(className, styles.root)}>
+      {location.state === null ? '' : <Header />}
+      {children}
+    </div>
+  );
+};
 
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  store: PropTypes.object,
+  location: PropTypes.object,
 };
+
+const ComponentWithRouter = withRouter(Component);
 
 // const mapStateToProps = state => ({
 //   someProp: reduxSelector(state),
@@ -34,7 +39,7 @@ Component.propTypes = {
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as MainLayout,
+  ComponentWithRouter as MainLayout,
   // Container as MainLayout,
   Component as MainLayoutComponent,
 };

@@ -15,7 +15,7 @@ const Component = ({className, children}) => (
   <div className={clsx(className, styles.root)}>
     <h3>Not found...</h3>
     <p>Click the button below to go back:</p>
-    <Button className={styles.link} component={Link} exact to={process.env.PUBLIC_URL +'/'} activeClassName='active'>Homepage</Button>
+    <Button className={styles.link} component={Link} to={process.env.PUBLIC_URL +'/'}>Homepage</Button>
   </div>
 );
 

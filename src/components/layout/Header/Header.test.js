@@ -11,8 +11,6 @@ const mockData = {
   },
 };
 
-
-
 describe('Component Header', () => {
   it('should render without crashing', () => {
     const component = shallow(<HeaderComponent {...mockData}/>);
