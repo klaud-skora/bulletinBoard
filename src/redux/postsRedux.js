@@ -9,12 +9,14 @@ const createActionName = name => `app/${reducerName}/${name}`;
 const FETCH_START = createActionName('FETCH_START');
 const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
+const ADD_POST = createActionName('ADD_POST');
 const UPDATE_POST = createActionName('UPDATE_POST');
 
 /* action creators */
 export const fetchStarted = payload => ({ payload, type: FETCH_START });
 export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
+export const addPost = payload => ({ payload, type: ADD_POST });
 export const updatePost = payload => ({ payload, type: UPDATE_POST });
 
 /* thunk creators */
@@ -50,13 +52,23 @@ export const reducer = (statePart = [], action = {}) => {
         },
       };
     }
+    case ADD_POST: {
+      return {
+        ...statePart,
+        data: [...statePart.data.posts, {...action.data} ],
+        loading: {
+          active: false,
+          error: false,
+        },
+      };
+    }
     case UPDATE_POST: {
       return {
         ...statePart,
-        data: statePart.data.posts.map(post => post.id === action.id ? {...post, post: action.post } : post ),
+        data: statePart.data.posts.map(post => post.id === action.payload.id ? {...post} : post ),
         loading: {
           active: false,
-          error: action.payload,
+          error: false,
         },
       };
     }
