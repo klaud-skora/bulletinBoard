@@ -4,40 +4,48 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { connect } from 'react-redux';
-import { getAllPublished, fetchPublished } from '../../../redux/postsRedux';
+import { getAll, loadPostsRequest } from '../../../redux/postsRedux';
 
 import styles from './Homepage.module.scss';
 import { Link } from 'react-router-dom';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
-const Component = ({ fetchPublishedPosts, posts, className}) => {
-  return (
-    <div className={clsx(className, styles.root)}>
-      <h1>Bulletin Board</h1>
-      <ul className={styles.titlesList}>
-        {posts.map(title => (
-          <Link key={title.id} className={styles.link} to={process.env.PUBLIC_URL + `/post/${title.id}`}>
-            <ArrowForwardIosIcon /><li className={styles.listElement}>{title.title}</li>
-          </Link>
-        ))}
-      </ul>
-    </div>
-  );
-};
+class Component extends React.Component {
+  static propTypes = {
+    className: PropTypes.string,
+    posts: PropTypes.array,
+    loadPosts: PropTypes.func,
+  };
 
-Component.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  posts: PropTypes.array,
-  fetchPublishedPosts: PropTypes.func,
-};
+  componentDidMount() {
+    const { loadPosts } = this.props;
+    loadPosts();
+  }
+
+  render() {
+    const { className, posts } = this.props;
+    return (
+      <div className={clsx(className, styles.root)}>
+        <h1>Bulletin Board</h1>
+        <ul className={styles.titlesList}>
+          {posts.map(post => (
+            <Link key={post._id} className={styles.link} to={process.env.PUBLIC_URL + `/post/${post.id}`}>
+              <ArrowForwardIosIcon /><li className={styles.listElement}>{post.title}</li>
+            </Link>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+}
+
 
 const mapStateToProps = state => ({
-  posts: getAllPublished(state),
+  posts: getAll(state),
 });
 
 const mapDispachToProps = dispatch => ({
-  fetchPublishedPosts: () => dispatch(fetchPublished()),
+  loadPosts: () => dispatch(loadPostsRequest()),
 });
 
 const Container = connect(mapStateToProps, mapDispachToProps)(Component);

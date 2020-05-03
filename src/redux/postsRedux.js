@@ -1,7 +1,7 @@
 import Axios from 'axios';
+import { API_URL } from '../config';
 /* selectors */
-export const getAll = ({posts}) => posts;
-export const getAllPublished = ({posts}) => posts.filter((post) => post.status === 'published');
+export const getAll = ({posts}) => posts.data;
 
 /* action name creator */
 const reducerName = 'posts';
@@ -19,23 +19,22 @@ const UPDATE_POST = createActionName('UPDATE_POST');
 export const fetchStarted = payload => ({ payload, type: FETCH_START });
 export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
-export const loadPosts = payload => ({ payload,type: LOAD_POSTS });
+export const loadPosts = payload => ({ payload, type: LOAD_POSTS });
 export const addPost = payload => ({ payload, type: ADD_POST });
 export const updatePost = payload => ({ payload, type: UPDATE_POST });
 
 /* thunk creators */
-export const fetchPublished = () => {
-  return (dispatch, getState) => {
+export const loadPostsRequest = () => {
+  return async dispatch => {
     dispatch(fetchStarted);
 
-    Axios
-      .get('http://localhost:8000/api/posts')
-      .then(res => {
-        dispatch(fetchSuccess(res.data));
-      })
-      .catch(err => {
-        dispatch(fetchError(err.message || true));
-      });
+    try {
+      let res = await Axios.get(`${API_URL}/posts`);
+      dispatch(fetchSuccess(res.data));
+    }
+    catch(err) {
+      dispatch(fetchError(err.message || true));
+    }
   };
 };
 /* reducer */
@@ -72,7 +71,7 @@ export const reducer = (statePart = [], action = {}) => {
     case ADD_POST: {
       return {
         ...statePart,
-        data: [...statePart.posts, {...action.data} ],
+        data: [...statePart.posts.data, {...action.data} ],
         loading: {
           active: false,
           error: false,
