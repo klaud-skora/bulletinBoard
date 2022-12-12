@@ -44,7 +44,7 @@
     "cors": "2.8.5",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
-    "express": "4.17.1",
+    "express": "4.17.3",
     "font-awesome": "^4.7.0",
     "mongodb": "3.3.2",
     "mongoose": "5.7.1",
